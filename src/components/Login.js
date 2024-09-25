@@ -5,14 +5,15 @@ import { checkValidData } from '../utils/validate';
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
+
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { USER_AVTAR } from '../utils/constant';
 
 const Login = () => {
 
-    const navigate=useNavigate();
+    
     const dispatch=useDispatch();
     const [isSignInForm, setIsSignInForm] = useState(true);
     const [errorMessage,setErrorMessage]=useState(null)
@@ -37,7 +38,7 @@ const Login = () => {
 
     //user info show krne keliye
     updateProfile(user, {
-      displayName: name.current.value, photoURL:"https://static.vecteezy.com/system/resources/previews/019/896/008/original/male-user-avatar-icon-in-flat-design-style-person-signs-illustration-png.png"
+      displayName: name.current.value, photoURL:USER_AVTAR
     }).then(() => {
       // Profile updated!
       
@@ -45,7 +46,7 @@ const Login = () => {
 
       dispatch(addUser({uid: uid, email:email, displayName:displayName,photoURL:photoURL,}));
 
-      navigate("/browse");
+    
     }).catch((error) => {
       // An error occurred
       // ...
@@ -69,7 +70,7 @@ const Login = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    navigate("/browse");
+    
     // ...
   })
   .catch((error) => {
