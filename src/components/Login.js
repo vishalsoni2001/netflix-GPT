@@ -5,7 +5,7 @@ import { checkValidData } from '../utils/validate';
 import {createUserWithEmailAndPassword } from "firebase/auth";
 import {signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
-
+import { BG_URl } from '../utils/constant';
 import { updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
@@ -94,8 +94,9 @@ const Login = () => {
     <div>
         <Header/>
         <div className='absolute'>
-         <img src="https://assets.nflxext.com/ffe/siteui/vlv3/47c2bc92-5a2a-4f33-8f91-4314e9e62ef1/web/IN-en-20240916-TRIFECTA-perspective_72df5d07-cf3f-4530-9afd-8f1d92d7f1a8_small.jpg" alt="logo"/>
+         <img src={BG_URl} alt="logo"/>
         </div>
+
         <form onSubmit={(e) => e.preventDefault()} className="absolute w-3/12 p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80">
             <h1 className="font-bold text-3xl py-4">
             {isSignInForm ? "Sign In" : "Sign Up"}
